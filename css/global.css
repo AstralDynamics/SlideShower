@@ -1,0 +1,14 @@
+.wrapper {
+	position: relative;
+	width: 980px;
+	height: 440px;
+	top: 40px;
+	left: 50%;
+	margin-left: -490px;
+}
+
+.viewer{
+	position: absolute;
+	top:0px;
+	left:0px;
+}
