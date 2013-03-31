@@ -4,12 +4,16 @@
 		<link rel="stylesheet" type="text/css" href="css/global.css">
 	</head>
 	<body>
-		<div class="wrapper">
-			<canvas class="viewer" id="main-viewer" width="640" height="480"></canvas>
+		<div id="wrapper" class="wrapper">
+			<div class="viewer" id="slides" width="640" height="480">
+				<img class="slide" id="slide" src=""></img>
+			</div>
 			<div class="viewer" id="ui" width="640" height="480">
 				<!-- back and forward buttons -->
-				<img class="nav forward" src="img/button.png"></img>
-				<img class="nav back" src="img/button.png"></img>
+				<div id="buttons" class="nav" width="640" height="480">
+					<img id="forward" class="forward" src="img/button.png"></img>
+					<img id="back" class="back" src="img/button.png"></img>
+				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="js/libs/jquery-1.9.1.min.js"></script>
