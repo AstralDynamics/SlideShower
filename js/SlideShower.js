@@ -2,6 +2,7 @@ var SlideShower = (function (exports) {
   
   var images = [];    // array holding image objects
   var imageIndex = 0; // the current image index
+  var imageNumber = 1; //slide number
   var loaded = false; // have the images been loaded?
   var loadedImages = 0;
   // accept an array of image urls
@@ -67,6 +68,8 @@ var SlideShower = (function (exports) {
     console.log(newSlide, imageIndex)
     $(oldSlide).fadeOut("slow");
     $(oldSlide).removeClass("current");
+    imageNumber = imageIndex + 1;
+    $("#slide_number").innerHTML = imageNumber+"/"+images.length;
   };
 
   // increment the image index
