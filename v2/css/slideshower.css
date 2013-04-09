@@ -1,0 +1,74 @@
+.slideshower {
+  width:100%;
+  height:100%;
+  font-family: "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
+}
+
+#slides img {
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  display:none;
+}
+
+#slides img.current {
+  display:block;
+}
+
+.sld-arr {
+  position:absolute;
+  top:50%;
+  z-index:20;
+  background-color:rgba(0,0,0,0.4);
+  padding:10px 15px;
+  color:#d6d6d6;
+  font-size:14pt;
+  cursor:pointer;
+}
+
+.sld-arr:hover {
+  color:#f6f6f6;
+}
+
+#sld-next {
+  right:0;
+}
+
+#sld-prev {
+  left:0;
+}
+
+.slideshower .sld-overlay {
+  position:relative;
+  width:100%;
+  height:100%;
+  background-color:#1d1d1d;
+  z-index:100;
+}
+
+.sld-overlay img {
+  z-index:110;
+}
+.logo {
+  position:absolute;
+  left:50%;
+  margin-left:-85px;
+  top:0;
+}
+
+.git {
+  position:absolute;
+  top:5px;
+  right:5px;
+}
+
+.progress-bar {
+  background-color:#1f89b5;
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:0;
+  height:5px;
+}
