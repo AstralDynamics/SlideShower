@@ -1,31 +1,13 @@
-window.onload = (function () {
-    imageIndex = 0;
-    images = ["http://www.southpacifichotel.com.hk/images/photo-tour-pics/lu_lu_restaurant.jpg",
-        "http://i.dailymail.co.uk/i/pix/2012/11/15/article-0-1609D0FF000005DC-373_964x641.jpg"];
+SlideShower.initImages([
+  "http://www.deshow.net/d/file/cartoon/2008-12/bob-ross-landscape-painting-281-2.jpg",
+  "http://images.fanpop.com/images/image_uploads/JAPAN-LANDSCAPE-japan-419352_1200_900.jpg",
+  "http://2.bp.blogspot.com/-Lmea8pj1LN8/TdZcdhsX-YI/AAAAAAAAAC8/S9E7uwgSTIk/s1600/Stunning_Mountain_Landscape.jpg",
+  "http://www.wallsave.com/wallpapers/1920x1200/landscapes/242405/landscapes-landscape-free-242405.jpg",
+  "http://wallpaperspoint.net/wp-content/walls/7_landscape_wallpaper_04/imagenes-de-paisajes-landscapes-photography_10.jpg"
+  ]);
+SlideShower.loadImages();
 
-    var update = function () {
-        imageIndex = imageIndex % images.length;
-        document.getElementById("slide").src = images[imageIndex];
-    }
-
-    update();
-
-    ui = $("#ui");
-
-    $("#wrapper").hover(function(){
-        $("#ui").fadeIn("fast");
-    },
-    function(){
-        $("#ui").fadeOut("fast");
-    });
-
-    document.getElementById("forward").onclick = function () {
-        imageIndex ++;
-        update();
-    };
-
-    document.getElementById("back").onclick = function () {
-        imageIndex --;
-        update();
-    };
+$(document).ready(function () {    
+    SlideShower.bindControls();
+    SlideShower.displayImages();
 });
