@@ -69,7 +69,7 @@ var SlideShower = (function (exports) {
     $(oldSlide).fadeOut("slow");
     $(oldSlide).removeClass("current");
     imageNumber = imageIndex + 1;
-    $("#slide_number").innerHTML = imageNumber+"/"+images.length;
+    $("#slide_number").html(imageNumber + "/" + images.length);
   };
 
   // increment the image index
