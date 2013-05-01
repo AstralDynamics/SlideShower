@@ -94,7 +94,7 @@ var SlideShower = (function (exports) {
         }else {
           started = true;
         }
-        if(times[imageIndex] != -1) {
+        if(times[imageIndex] != -1 && started) {
           slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
         }
       }
