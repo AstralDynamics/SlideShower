@@ -1,5 +1,6 @@
 var SlideShower = (function (exports) {
   
+  var started = false;
   var images = [];    // array holding image objects
   var times = [];     //array holding slide transition times
   var imageIndex = 0; // the current image index
@@ -44,7 +45,6 @@ var SlideShower = (function (exports) {
       images[i].onload = loadedNewImage;
     }
     loaded = true;
-    slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
   };
 
   // add them to the DOM
@@ -87,6 +87,9 @@ var SlideShower = (function (exports) {
         nextSlide();
       } else if (e.keyCode == "37") {
         prevSlide();
+      } else if (e.keyCode == "13") {
+        started = true;
+        slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
       }
     });
   };
@@ -100,8 +103,10 @@ var SlideShower = (function (exports) {
     $(oldSlide).removeClass("current");
     imageNumber = imageIndex + 1;
     $("#slide_number").html(imageNumber + "/" + images.length);
-    window.clearInterval(slideIntervalHandle);
-    slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
+    if (started) {
+      window.clearInterval(slideIntervalHandle);
+      slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
+    }
   };
 
   // SUPER HELPER METHOD
