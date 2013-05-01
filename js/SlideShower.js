@@ -88,7 +88,11 @@ var SlideShower = (function (exports) {
       } else if (e.keyCode == "37") {
         prevSlide();
       } else if (e.keyCode == "13") {
-        started = true;
+        if(started) {
+          started = false;
+        }else {
+          started = true;
+        }
         if(times[imageIndex] != -1) {
           slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
         }
