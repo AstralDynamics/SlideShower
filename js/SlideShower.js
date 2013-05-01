@@ -89,7 +89,9 @@ var SlideShower = (function (exports) {
         prevSlide();
       } else if (e.keyCode == "13") {
         started = true;
-        slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
+        if(times[imageIndex] != -1) {
+          slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
+        }
       }
     });
   };
@@ -103,7 +105,7 @@ var SlideShower = (function (exports) {
     $(oldSlide).removeClass("current");
     imageNumber = imageIndex + 1;
     $("#slide_number").html(imageNumber + "/" + images.length);
-    if (started) {
+    if (started && times[imageIndex] != -1) {
       window.clearInterval(slideIntervalHandle);
       slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
     }
