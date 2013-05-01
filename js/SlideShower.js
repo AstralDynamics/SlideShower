@@ -1,13 +1,17 @@
 var SlideShower = (function (exports) {
   
   var images = [];    // array holding image objects
+  var times = [];     //array holding slide transition times
   var imageIndex = 0; // the current image index
   var imageNumber = 1; //slide number
   var loaded = false; // have the images been loaded?
   var loadedImages = 0;
   // accept an array of image urls
-  var initImages = function(imgSrc) {
+  var slideIntervalHandle;
+
+  var initImages = function(imgSrc, transTimes) {
     images = imgSrc
+    times = transTimes;
   };
 
   // convert them to image objects
@@ -19,6 +23,12 @@ var SlideShower = (function (exports) {
       images[i].onload = loadedNewImage;
     }
     loaded = true;
+
+    //set initial slide transition interval
+    slideIntervalHandle = window.setInterval(function () {
+      nextImage();
+      updateSlide();
+    }, times[imageIndex]);
   };
 
   // add them to the DOM
@@ -78,6 +88,11 @@ var SlideShower = (function (exports) {
     $(oldSlide).removeClass("current");
     imageNumber = imageIndex + 1;
     $("#slide_number").html(imageNumber + "/" + images.length);
+    window.clearInterval(slideIntervalHandle);
+    slideIntervalHandle = window.setInterval(function () {
+      nextImage();
+      updateSlide();
+    }, times[imageIndex]);
   };
 
   // increment the image index
@@ -106,6 +121,5 @@ var SlideShower = (function (exports) {
     bindControls: bindControls,
     go: go
   };
-
 
 })(SlideShower);
