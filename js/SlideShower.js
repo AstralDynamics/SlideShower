@@ -58,7 +58,15 @@ var SlideShower = (function (exports) {
     $("#slideshower").mouseleave(function () {
       $("#sld-controls").fadeOut("fast");
     });
-    
+    $(document).keydown(function(e) {
+      if (e.keyCode == "39") {
+        nextImage();
+        updateSlide();
+      } else if (e.keyCode == "37") {
+        prevImage();
+        updateSlide();
+      }
+    });
   };
 
   var updateSlide = function () {
@@ -99,19 +107,5 @@ var SlideShower = (function (exports) {
     go: go
   };
 
-var KeyCheck = function(k) {
-        k = k || window.event;
-        console.log("Here");
-        if (k.keyCode == "39") {
-	    nextSlide();
-	    updateSlide();
-        }
-        else if (k.keyCode == "37") {
-	    previousSlide();
-	    updateSlide();
-        }
-    };
-
-    window.onkeydown = KeyCheck;
 
 })(SlideShower);
