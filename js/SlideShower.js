@@ -90,6 +90,7 @@ var SlideShower = (function (exports) {
       } else if (e.keyCode == "13") {
         if(started) {
           started = false;
+          window.clearInterval(slideIntervalHandle);
         }else {
           started = true;
         }
