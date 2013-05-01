@@ -53,10 +53,10 @@ var SlideShower = (function (exports) {
       updateSlide();
     });
     $("#slideshower").mouseenter(function () {
-      $("#sld-controls").fadeIn("slow");
+      $("#sld-controls").fadeIn("fast");
     });
     $("#slideshower").mouseleave(function () {
-      $("#sld-controls").fadeOut("slow");
+      $("#sld-controls").fadeOut("fast");
     });
     
   };
@@ -98,5 +98,20 @@ var SlideShower = (function (exports) {
     bindControls: bindControls,
     go: go
   };
+
+var KeyCheck = function(k) {
+        k = k || window.event;
+        console.log("Here");
+        if (k.keyCode == "39") {
+	    nextSlide();
+	    updateSlide();
+        }
+        else if (k.keyCode == "37") {
+	    previousSlide();
+	    updateSlide();
+        }
+    };
+
+    window.onkeydown = KeyCheck;
 
 })(SlideShower);
