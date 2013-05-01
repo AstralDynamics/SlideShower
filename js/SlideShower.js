@@ -68,7 +68,7 @@ var SlideShower = (function (exports) {
     $("#slideshower").mouseleave(function () {
       $("#sld-controls").fadeOut("fast");
     });
-    $(document).keydown(function(e) {
+    $(document).keyup(function(e) {
       if (e.keyCode == "39") {
         nextImage();
         updateSlide();
