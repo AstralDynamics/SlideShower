@@ -14,6 +14,27 @@ var SlideShower = (function (exports) {
     times = transTimes;
   };
 
+  // increment the image index
+  var nextImage = function () {
+    imageIndex < images.length - 1 ? imageIndex++ : imageIndex = 0;
+  };
+  // decrement the image index
+  var prevImage = function () {
+    imageIndex > 0 ? imageIndex-- : imageIndex = images.length - 1;
+  };
+
+  //changes to next slide and updates
+  var nextSlide = function () {
+      nextImage();
+      updateSlide();
+  };
+
+  //changes to previous slide and updates
+  var prevSlide = function () {
+    prevImage();
+    updateSlide();
+  }
+
   // convert them to image objects
   var loadImages = function() {
     for(var i = 0; i < images.length; i++) {
@@ -23,12 +44,7 @@ var SlideShower = (function (exports) {
       images[i].onload = loadedNewImage;
     }
     loaded = true;
-
-    //set initial slide transition interval
-    slideIntervalHandle = window.setInterval(function () {
-      nextImage();
-      updateSlide();
-    }, times[imageIndex]);
+    slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
   };
 
   // add them to the DOM
@@ -55,12 +71,10 @@ var SlideShower = (function (exports) {
 
   var bindControls = function () {
     $("#sld-next").click(function () {
-      nextImage();
-      updateSlide();
+      nextSlide();
     });
     $("#sld-prev").click(function () {
-      prevImage();
-      updateSlide();
+      prevSlide
     });
     $("#slideshower").mouseenter(function () {
       $("#sld-controls").fadeIn("fast");
@@ -70,11 +84,9 @@ var SlideShower = (function (exports) {
     });
     $(document).keyup(function(e) {
       if (e.keyCode == "39") {
-        nextImage();
-        updateSlide();
+        nextSlide();
       } else if (e.keyCode == "37") {
-        prevImage();
-        updateSlide();
+        prevSlide();
       }
     });
   };
@@ -89,19 +101,7 @@ var SlideShower = (function (exports) {
     imageNumber = imageIndex + 1;
     $("#slide_number").html(imageNumber + "/" + images.length);
     window.clearInterval(slideIntervalHandle);
-    slideIntervalHandle = window.setInterval(function () {
-      nextImage();
-      updateSlide();
-    }, times[imageIndex]);
-  };
-
-  // increment the image index
-  var nextImage = function () {
-    imageIndex < images.length - 1 ? imageIndex++ : imageIndex = 0;
-  };
-  // decrement the image index
-  var prevImage = function () {
-    imageIndex > 0 ? imageIndex-- : imageIndex = images.length - 1;
+    slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
   };
 
   // SUPER HELPER METHOD
