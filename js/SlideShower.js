@@ -61,7 +61,6 @@ var SlideShower = (function (exports) {
   
   var loadedNewImage = function () {
     loadedImages++;
-    console.log(loadedImages)
     var width = loadedImages / images.length * 100;
     $("#sld-progress").animate({"width": width + "%"});
     if(width >= 100) {
@@ -88,14 +87,15 @@ var SlideShower = (function (exports) {
       } else if (e.keyCode == "37") {
         prevSlide();
       } else if (e.keyCode == "13") {
+	console.log(started);
         if(started) {
           started = false;
-          window.clearInterval(slideIntervalHandle);
+          clearInterval(slideIntervalHandle);
         }else {
           started = true;
         }
         if(times[imageIndex] != -1 && started) {
-          slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
+          slideIntervalHandle = setInterval(nextSlide, times[imageIndex]);
         }
       }
     });
@@ -105,17 +105,19 @@ var SlideShower = (function (exports) {
     var oldSlide = $(".current");
     var newSlide = $("#slides img").get(imageIndex)
     $(newSlide).fadeIn("slow").addClass("current");
-    console.log(newSlide, imageIndex)
     $(oldSlide).fadeOut("slow");
     $(oldSlide).removeClass("current");
     imageNumber = imageIndex + 1;
+
     $("#slide_number").html(imageNumber + "/" + images.length);
+
     if (started && times[imageIndex] != -1) {
-      window.clearInterval(slideIntervalHandle);
-      slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
+      clearInterval(slideIntervalHandle);
+      slideIntervalHandle = setInterval(nextSlide, times[imageIndex]);
     } else if(!started) {
-      window.clearInterval(slideIntervalHandle);
+      clearInterval(slideIntervalHandle);
     }
+
   };
 
   // SUPER HELPER METHOD
