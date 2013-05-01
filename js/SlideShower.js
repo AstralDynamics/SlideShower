@@ -113,6 +113,8 @@ var SlideShower = (function (exports) {
     if (started && times[imageIndex] != -1) {
       window.clearInterval(slideIntervalHandle);
       slideIntervalHandle = window.setInterval(nextSlide, times[imageIndex]);
+    } else if(!started) {
+      window.clearInterval(slideIntervalHandle);
     }
   };
 
