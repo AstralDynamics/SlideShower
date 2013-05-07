@@ -73,7 +73,7 @@ var SlideShower = (function (exports) {
       nextSlide();
     });
     $("#sld-prev").click(function () {
-      prevSlide
+      prevSlide();
     });
     $("#slideshower").mouseenter(function () {
       $("#sld-controls").fadeIn("fast");
